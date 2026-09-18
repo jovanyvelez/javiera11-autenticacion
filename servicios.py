@@ -17,7 +17,6 @@ async def autenticar_usuario(
     """
     usuario = await repositorio.obtener_usuario_por_correo(conexion, correo)
     if usuario is None:
-        verify_password(contrasena, DUMMY_HASH)
         return None
     if not verify_password(contrasena, usuario.contrasena_hasheada):
         return None
