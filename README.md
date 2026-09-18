@@ -8,7 +8,7 @@ con **asyncpg** (tabla `usuarios`).
 ## Puesta en marcha
 
 ```bash
-cp .env-sample .env        # y rellena SECRET_KEY: openssl rand -hex 32
+cp .env-sample .env        # rellena URL_DATABASE y SECRET_KEY (openssl rand -hex 32)
 uv sync
 uv run fastapi dev          # o: uv run uvicorn main:app
 ```
