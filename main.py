@@ -7,15 +7,12 @@
 """
 
 from contextlib import asynccontextmanager
-from pathlib import Path
 
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 import db
 from vistas import router
-
-BASE_DIR = Path(__file__).resolve().parent
 
 
 @asynccontextmanager
@@ -27,5 +24,7 @@ async def lifespan(_app: FastAPI):
 
 
 app = FastAPI(title="Ejemplo autenticación", lifespan=lifespan)
-app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
+# Directorio literal: Vercel detecta el mount en build y promueve estos
+# archivos al CDN; en local los sirve la propia app.
+app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(router)

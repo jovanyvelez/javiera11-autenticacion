@@ -15,7 +15,13 @@ async def crear_pool() -> asyncpg.Pool:
     global _pool
     if _pool is None:
         _pool = await asyncpg.create_pool(
-            config.URL_DATABASE, min_size=1, max_size=5
+            config.URL_DATABASE,
+            min_size=1,
+            max_size=5,
+            # Cierra las conexiones inactivas tras 5 min: en serverless
+            # (Vercel Fluid) la instancia puede quedar congelada y las
+            # conexiones largas pueden morir en el lado de Neon.
+            max_inactive_connection_lifetime=300,
         )
     return _pool
 
