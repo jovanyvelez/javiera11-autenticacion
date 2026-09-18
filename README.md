@@ -5,6 +5,10 @@ con **JWT** en cookie `httpOnly`, contraseñas hasheadas con **argon2** (vía
 `pwdlib`, el sucesor mantenido de `passlib`) y usuarios en **PostgreSQL**
 con **asyncpg** (tabla `usuarios`).
 
+> 📚 **Demo académica** — material docente:
+> [Guía del alumno](guia_alumno.md) ·
+> [Guía del profesor](guia_profesor.md)
+
 ## Puesta en marcha
 
 ```bash
